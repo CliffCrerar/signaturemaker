@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import Layout from '../layout'
 
 
 export default function Home() {
+
+  const [signatureDetail, displaySignature] = useState('');
 
   const formControls = [
     {
@@ -19,8 +22,13 @@ export default function Home() {
     {
       name: 'website',
       type: 'text',
+    },
+    {
+      name: 'img',
+      type: 'file'
     }
   ]
+
 
   const SignatureForm = () => (
     <form name="signatureForm" onSubmit={submitForm}>
@@ -30,7 +38,7 @@ export default function Home() {
           <input id={control.name} name={control.name} type={control.type} />
         </div>
       ))}
-      <br/>
+      <br />
       <input type="submit" name="generate" value="Generate Signature" />
     </form>
   )
@@ -42,14 +50,17 @@ export default function Home() {
     const data = new FormData(event.target)
     console.log('data: ', data.SignatureForm);
     const formData = {};
+
     formControls.forEach(control => {
-  
       formData[control.name] = data.get(control.name);
     })
-    console.log('formData: ', formData);
-    
-    console.log('data: ');
 
+    formData.img.arrayBuffer().then(buf => {
+      const bts = Buffer.from(buf).toString('base64');
+      console.log('bts: ', bts);
+      displaySignature('data:image/png;base64,' + bts);
+      console.log('img: ', img);
+    });
 
 
   }
@@ -75,8 +86,12 @@ export default function Home() {
           <input type="text" id="website" name="website" /> */}
         <br />
 
-      
-    </div>
+        <div>
+
+        <img src={signatureDetail} alt="signature-img" />
+        </div>
+
+      </div>
     </Layout >
   )
 }
