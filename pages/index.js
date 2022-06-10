@@ -37,26 +37,18 @@ export default function Home() {
 
       <div className="container">
         <style jsx>{`
-          input {
-            
-          }
           .container {
             display: flex;
+          }
+          .horizontal-seperator{
+            border: 0.5px solid rgba(0, 0, 0, 0.2);
+            margin-right: 20px;
           }
         `}</style>
         {/* <form onSubmit={submitForm} name="signatureForm"> */}
         
-        <SignatureForm submitForm={submitForm} />
-        {/* <label htmlFor="name">Enter Name</label>
-          <input type="text" id="name" name="name" />
-          <label htmlFor="designation">Enter Designation:</label>
-          <input type="text" id="designation" name="designation" />
-          <label htmlFor="email" >Enter Email: </label>
-          <input type="email" id="email" name="email" />
-          <label htmlFor="website" >Enter Web Site:</label>
-          <input type="text" id="website" name="website" /> */}
-        
-
+        <SignatureForm submitForm={submitForm} />   
+        <div className="horizontal-seperator"></div> 
         <SignatureDisplay/>
       </div>
     </Layout >

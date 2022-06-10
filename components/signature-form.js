@@ -4,7 +4,12 @@ import { formControls } from "../config"
 
 export default function SingatureForm(props) {
     return (
-        <form name="signatureForm" onSubmit={props.submitForm}>
+        <form  name="signatureForm" onSubmit={props.submitForm}>
+            <style jsx>{`
+                form {
+                    margin: 0 20px;
+                }
+                `}</style>
             {
                 formControls.map(
                     control => (
@@ -15,6 +20,7 @@ export default function SingatureForm(props) {
                                 Enter {control.name}:
                             </label>
                             <input
+                                className="u-full-width"
                                 id={control.name}
                                 name={control.name}
                                 type={control.type} />
