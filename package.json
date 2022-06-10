@@ -1,7 +1,12 @@
 {
   "name": "signature-maker",
-  "version": "0.1.0",
+  "version": "0.9.0-beta",
   "private": true,
+  "author": {
+    "name": "Cliff Crerar",
+    "email": "cliff.crerar@gmail.com",
+    "url": "https://cliffcrerar.tech"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
