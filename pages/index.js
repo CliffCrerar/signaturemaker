@@ -1,81 +1,52 @@
 import { useState } from 'react';
+import { SignatureDisplay, SignatureForm } from '../components';
+import { formControls } from '../config';
 import Layout from '../layout'
+import {Signature} from '../models';
 
 
 export default function Home() {
 
   const [signatureDetail, displaySignature] = useState('');
 
-  const formControls = [
-    {
-      name: 'name',
-      type: 'text',
-    },
-    {
-      name: 'designation',
-      type: 'text',
-    },
-    {
-      name: 'email',
-      type: 'email',
-    },
-    {
-      name: 'website',
-      type: 'text',
-    },
-    {
-      name: 'img',
-      type: 'file'
-    }
-  ]
-
-
-  const SignatureForm = () => (
-    <form name="signatureForm" onSubmit={submitForm}>
-      {formControls.map(control => (
-        <div key={control.name}>
-          <label htmlFor={control.name}>Enter {control.name}:</label>
-          <input id={control.name} name={control.name} type={control.type} />
-        </div>
-      ))}
-      <br />
-      <input type="submit" name="generate" value="Generate Signature" />
-    </form>
-  )
-
   function submitForm(event) {
-    console.log(event);
+
     event.preventDefault()
     event.persist();
+
     const data = new FormData(event.target)
-    console.log('data: ', data.SignatureForm);
     const formData = {};
 
     formControls.forEach(control => {
       formData[control.name] = data.get(control.name);
-    })
-
-    formData.img.arrayBuffer().then(buf => {
-      const bts = Buffer.from(buf).toString('base64');
-      console.log('bts: ', bts);
-      displaySignature('data:image/png;base64,' + bts);
-      console.log('img: ', img);
     });
+    
+    const signature = new Signature(data);
+    
+    console.log('signature: ', signature);
 
-
+    formData.imgFile.arrayBuffer()
+      .then(buf => {
+        const bts = Buffer.from(buf).toString('base64');
+        displaySignature('data:image/png;base64,' + bts);
+      });
   }
 
   return (
     <Layout>
 
       <div className="container">
-        <style>{`
+        <style jsx>{`
           input {
-            width: 50%;
+            
+          }
+          .container {
+            display: flex;
           }
         `}</style>
         {/* <form onSubmit={submitForm} name="signatureForm"> */}
-        <SignatureForm />
+        
+        <SignatureForm submitForm={submitForm} />
         {/* <label htmlFor="name">Enter Name</label>
           <input type="text" id="name" name="name" />
           <label htmlFor="designation">Enter Designation:</label>
@@ -84,13 +55,9 @@ export default function Home() {
           <input type="email" id="email" name="email" />
           <label htmlFor="website" >Enter Web Site:</label>
           <input type="text" id="website" name="website" /> */}
-        <br />
+        
 
-        <div>
-
-        <img src={signatureDetail} alt="signature-img" />
-        </div>
-
+        <SignatureDisplay/>
       </div>
     </Layout >
   )
