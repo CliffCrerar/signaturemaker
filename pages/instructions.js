@@ -1,6 +1,6 @@
 import Layout from "../layout"
 
-export default () => {
+export default function Instructions() {
     return (
         <Layout>
         <div className="container">
