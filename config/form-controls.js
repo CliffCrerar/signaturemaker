@@ -13,6 +13,10 @@ export default [
         type: 'email',
     },
     {
+        name: 'phone',
+        type: 'text'
+    },
+    {
         name: 'website',
         type: 'text',
     },

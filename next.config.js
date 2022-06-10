@@ -11,7 +11,7 @@ console.log('conf: ', conf);
 
 const nextConfig = {
   images: {
-    domains: ['cdn.softwarecraft.co.za', 'hostnameOne.com'],
+    domains: ['cdn.softwarecraft.co.za'],
   },
   reactStrictMode: true,
 }

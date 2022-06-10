@@ -20,6 +20,7 @@ export default function SingatureForm(props) {
                                 Enter {control.name}:
                             </label>
                             <input
+                                required
                                 className="u-full-width"
                                 id={control.name}
                                 name={control.name}

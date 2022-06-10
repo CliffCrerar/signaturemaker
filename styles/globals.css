@@ -22,3 +22,8 @@ a {
 h1 {
   font-family: Poller One;
 }
+
+.default-img {
+  width: auto;
+  height: 100%;
+}
